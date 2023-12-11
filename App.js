@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, Pressable } from "react-native";
 
-export default function App() {
+import Header from "./components/header/header.component";
+import CurrentLearningCard from "./components/currentLearningCard/currentLearningCard.component";
+import SearchContainer from "./components/searchContainer/searchContainer.component";
+
+import { Container } from "./App.styles";
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Container>
+      <SafeAreaView>
+        <ScrollView style={{ height: "100%" }}>
+          <Header />
+          <SearchContainer />
+          <CurrentLearningCard />
+        </ScrollView>
+      </SafeAreaView>
+    </Container>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
