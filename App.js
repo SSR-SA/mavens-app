@@ -1,25 +1,21 @@
-import { SafeAreaView, ScrollView, Pressable } from "react-native";
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import Header from "./components/header/header.component";
-import CurrentLearningCard from "./components/continueLearningSection/continueLearningSection.component";
-import SearchContainer from "./components/searchContainer/searchContainer.component";
-import OffersForYouSection from "./components/offersForYouSection/offersForYouSection.component";
+import LoginPage from './pages/loginPage';
+import HomePage from './pages/homePage';
 
-import { Container } from "./App.styles";
+const Stack = createStackNavigator();
 
 const App = () => {
-  return (
-    <Container>
-      <SafeAreaView>
-        <ScrollView style={{ height: "100%" }}>
-          <Header />
-          <SearchContainer />
-          <CurrentLearningCard />
-          <OffersForYouSection />
-        </ScrollView>
-      </SafeAreaView>
-    </Container>
-  );
+	return (
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName="Login">
+				<Stack.Screen name="Login" component={LoginPage} />
+				<Stack.Screen name="Home" component={HomePage} />
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 };
 
 export default App;
