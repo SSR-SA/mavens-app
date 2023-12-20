@@ -64,7 +64,7 @@ const SignupPage = () => {
 			<Input placeholder="Password" secureTextEntry={true} italize="none" />
 
 			<Button
-				title="Login"
+				title="Sign Up"
 				onPress={() => {
 					alert('Logged in successfully!');
 				}}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
 	StyleSheet,
 	Text,
@@ -9,6 +9,7 @@ import {
 	Linking,
 } from 'react-native';
 import styled from 'styled-components/native';
+import {userLogin} from '../requests/user';
 
 const Container = styled.View`
 	flex: 1;
@@ -52,7 +53,47 @@ const Link = styled.Text`
 	font-weight: bold;
 `;
 
-const LoginPage = () => {
+const LoginButton = styled.TouchableOpacity`
+	margin-top: 20px;
+	background-color: purple;
+	padding: 10px;
+	align-items: center;
+	border-radius: 5px;
+`;
+
+const LoginButtonText = styled.Text`
+	color: white;
+	font-size: 18px;
+`;
+
+const SignUpButton = styled.TouchableOpacity`
+	margin-top: 20px;
+	background-color: gray;
+	padding: 10px;
+	align-items: center;
+	border-radius: 5px;
+`;
+
+const SignUpButtonText = styled.Text`
+	color: white;
+	font-size: 18px;
+`;
+
+const LoginPage = ({navigation}) => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleLogin = async () => {
+		const response = await userLogin('');
+		console.log(response);
+		// TODO: Store Token
+	};
+
+	const navigateToSignUp = () => {
+		// Navigate to the SignUp page
+		navigation.navigate('SignUp');
+	};
+
 	return (
 		<Container>
 			<Title>
@@ -61,12 +102,13 @@ const LoginPage = () => {
 			<Input placeholder="Email" keyboardType="email-address" italize="none" />
 			<Input placeholder="Password" secureTextEntry={true} italize="none" />
 
-			<Button
-				title="Login"
-				onPress={() => {
-					alert('Logged in successfully!');
-				}}
-			/>
+			<LoginButton onPress={handleLogin}>
+				<LoginButtonText>Login</LoginButtonText>
+			</LoginButton>
+
+			<SignUpButton onPress={navigateToSignUp}>
+				<SignUpButtonText>Don't have an account? Sign Up</SignUpButtonText>
+			</SignUpButton>
 			<ForgotPassword
 				onPress={() => {
 					console.log('kill me pls');
@@ -74,6 +116,7 @@ const LoginPage = () => {
 			>
 				<ForgotPasswordText>Forgot password?</ForgotPasswordText>
 			</ForgotPassword>
+
 			<Terms>
 				By logging in you agree to our{' '}
 				<Link onPress={() => Linking.openURL('www.killme.com/privacy-policy')}>
