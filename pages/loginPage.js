@@ -90,8 +90,11 @@ const LoginPage = ({navigation}) => {
 	};
 
 	const navigateToSignUp = () => {
-		// Navigate to the SignUp page
 		navigation.navigate('SignUp');
+	};
+
+	const navigateForgetPassword = () => {
+		navigation.navigate('ForgetPassword');
 	};
 
 	return (
@@ -109,11 +112,7 @@ const LoginPage = ({navigation}) => {
 			<SignUpButton onPress={navigateToSignUp}>
 				<SignUpButtonText>Don't have an account? Sign Up</SignUpButtonText>
 			</SignUpButton>
-			<ForgotPassword
-				onPress={() => {
-					console.log('kill me pls');
-				}}
-			>
+			<ForgotPassword onPress={navigateForgetPassword}>
 				<ForgotPasswordText>Forgot password?</ForgotPasswordText>
 			</ForgotPassword>
 
