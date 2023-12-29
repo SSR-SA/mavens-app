@@ -1,19 +1,18 @@
-const BASE_URL = 'localhost:8083/api';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://192.168.1.56:8000';
 
 export const userLogin = async (payload) => {
-	const loginData = {
-		email: 'elmiranthony@gmail.com',
-		password: '123',
-	};
-
 	try {
-		const response = await axios.post(`${BASE_URL}/user/login`, loginData);
+		console.log(payload);
+		const response = await axios.post(`/api/user/login`, payload);
 
-		console.log('Login successful:', response.data);
-
-		return response.data;
+		if (response.status === 200) {
+			return response.data;
+		} else {
+			throw new Error(`Unexpected response status: ${response.status}`);
+		}
 	} catch (error) {
-		console.error('Login failed:', error);
 		throw error;
 	}
 };
