@@ -8,7 +8,6 @@ export const TitleBar = styled.View`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  /* background-color: red; */
 `;
 
 export const TitleBarLeft = styled.View`
@@ -35,7 +34,7 @@ export const BackgroundContainer = styled.View`
 export const Avatar = styled.Image`
   width: 35px;
   height: 35px;
-  border-radius: 50%;
+  border-radius: 50px;
 `;
 
 export const Title = styled.Text`
