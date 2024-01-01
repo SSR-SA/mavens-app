@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Linking, StatusBar} from 'react-native';
+import {Linking} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {userLogin} from '../../requests/user';
+import {userLogin, userSignUp} from '../../requests/user';
 
 import {
 	Container,
@@ -13,8 +13,6 @@ import {
 	InputContainer,
 	ButtonContainer,
 	Input,
-	ForgotPassword,
-	ForgotPasswordText,
 	TermsContainer,
 	Terms,
 	PrivacyLink,
@@ -22,23 +20,25 @@ import {
 	LoginButtonText,
 	SignUpButton,
 	SignUpButtonText,
-} from './loginPage.styles';
+} from './signupPage.styles';
 
-const LoginPage = ({navigation}) => {
+const SignUpPage = ({navigation}) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
 
-	const handleLogin = async () => {
+	const handleSignUp = async () => {
 		try {
-			if (!email || !password) {
+			if (!email || !password || !firstName || !lastName) {
 				alert('Please fill all fields');
 				return;
 			}
 
-			const response = await userLogin({email: email, password: password});
+			const response = await userSignUp({firstName, lastName, email, password});
 
 			if (response) {
-				navigation.navigate('Home');
+				navigation.navigate('Login');
 			} else {
 				alert('Login failed. Please check your credentials.');
 			}
@@ -48,12 +48,8 @@ const LoginPage = ({navigation}) => {
 		}
 	};
 
-	const navigateToSignUp = () => {
-		navigation.navigate('SignUp');
-	};
-
-	const navigateForgetPassword = () => {
-		navigation.navigate('ForgetPassword');
+	const navigateToLogin = () => {
+		navigation.navigate('Login');
 	};
 
 	return (
@@ -67,6 +63,20 @@ const LoginPage = ({navigation}) => {
 						</Title>
 					</TitleContainer>
 					<InputContainer>
+						<Input
+							placeholder="First name"
+							autoCapitalize="none"
+							value={firstName}
+							onChangeText={(text) => setFirstName(text)}
+							placeholderTextColor="#808080"
+						/>
+						<Input
+							placeholder="Last name"
+							autoCapitalize="none"
+							value={lastName}
+							onChangeText={(text) => setLastName(text)}
+							placeholderTextColor="#808080"
+						/>
 						<Input
 							placeholder="Email"
 							keyboardType="email-address"
@@ -83,20 +93,15 @@ const LoginPage = ({navigation}) => {
 							onChangeText={(text) => setPassword(text)}
 							placeholderTextColor="#808080"
 						/>
-						<ForgotPassword onPress={navigateForgetPassword}>
-							<ForgotPasswordText>Forgot?</ForgotPasswordText>
-						</ForgotPassword>
 					</InputContainer>
 					<ButtonContainer>
-						<LoginButton onPress={handleLogin}>
-							<LoginButtonText>Login</LoginButtonText>
-						</LoginButton>
-
-						<SignUpButton onPress={navigateToSignUp}>
-							<SignUpButtonText>
-								Don't have an account? Sign Up
-							</SignUpButtonText>
+						<SignUpButton onPress={handleSignUp}>
+							<SignUpButtonText>Sign up</SignUpButtonText>
 						</SignUpButton>
+
+						<LoginButton onPress={navigateToLogin}>
+							<LoginButtonText>Already a user? login</LoginButtonText>
+						</LoginButton>
 					</ButtonContainer>
 				</ContainerTop>
 
@@ -125,4 +130,4 @@ const LoginPage = ({navigation}) => {
 	);
 };
 
-export default LoginPage;
+export default SignUpPage;

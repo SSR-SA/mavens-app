@@ -5,7 +5,7 @@ import {StatusBar} from 'react-native';
 
 import LoginPage from './pages/loginPage/loginPage.component';
 import HomePage from './pages/homePage';
-import SignupPage from './pages/signupPage';
+import SignupPage from './pages/signupPage/signupPage.component';
 import ForgetPassword from './pages/forgotPassword';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 

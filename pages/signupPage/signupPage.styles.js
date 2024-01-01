@@ -60,17 +60,6 @@ export const Input = styled.TextInput`
 	color: #a0a0a0;
 `;
 
-export const ForgotPassword = styled.TouchableOpacity`
-	position: absolute;
-`;
-
-export const ForgotPasswordText = styled.Text`
-	color: #6b6b6b;
-	font-size: 12px;
-	top: 15px;
-	left: 95px;
-`;
-
 export const ButtonContainer = styled.View`
 	display: flex;
 	align-items: center;
@@ -79,7 +68,7 @@ export const ButtonContainer = styled.View`
 	gap: 12px;
 `;
 
-export const LoginButton = styled.TouchableOpacity`
+export const SignUpButton = styled.TouchableOpacity`
 	align-items: center;
 	background-color: #e19c97;
 	padding: 6px;
@@ -87,19 +76,19 @@ export const LoginButton = styled.TouchableOpacity`
 	border-radius: 5px;
 `;
 
-export const LoginButtonText = styled.Text`
+export const SignUpButtonText = styled.Text`
 	color: #1d1d1d;
 	font-size: 14px;
 `;
 
-export const SignUpButton = styled.TouchableOpacity`
+export const LoginButton = styled.TouchableOpacity`
 	align-items: center;
 	padding: 6px;
 	width: 80%;
 	border-radius: 5px;
 `;
 
-export const SignUpButtonText = styled.Text`
+export const LoginButtonText = styled.Text`
 	color: #6b6b6b;
 `;
 
