@@ -7,26 +7,33 @@ import {Container} from '../App.styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useEffect, useState} from 'react';
 import {GetCourses} from '../requests/courses';
-
-const getCoursesData = async () => {
-	try {
-		const response = await GetCourses();
-		console.log(response);
-		if (response) {
-		} else {
-			alert('Failed to get data');
-		}
-	} catch (error) {
-		console.error('Login error:', error.message);
-		alert('An error occurred during login. Please try again.');
-	}
-};
+import {useAuth} from '../context/authContext';
 
 const HomePage = () => {
-	const [courseData, setCourseData] = useState(null);
+	const [courseData, setCourseData] = useState([]);
+	const {token} = useAuth();
+
 	useEffect(() => {
-		const response = getCoursesData();
-		setCourseData(response);
+		const fetchData = async () => {
+			try {
+				console.log('TOKEN: ', token);
+
+				if (token) {
+					const response = await GetCourses(token, {});
+					if (response) {
+						console.log(response);
+						setCourseData(response);
+					} else {
+						alert('Failed to get data');
+					}
+				}
+			} catch (error) {
+				console.error('Error fetching courses:', error.message);
+				alert('An error occurred while fetching data. Please try again.');
+			}
+		};
+
+		fetchData();
 	}, []);
 	return (
 		<Container>
@@ -34,7 +41,7 @@ const HomePage = () => {
 				<ScrollView style={{height: '100%'}}>
 					<Header />
 					<SearchContainer />
-					<CurrentLearningCard {...courseData} />
+					<CurrentLearningCard cardsData={courseData} />
 					<OffersForYouSection />
 				</ScrollView>
 			</SafeAreaView>

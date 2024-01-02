@@ -18,7 +18,6 @@ export const userLogin = async (payload) => {
 };
 export const userSignUp = async (payload) => {
 	try {
-		console.log(payload);
 		const response = await axios.post('/api/user/register', payload);
 
 		if (response.status === 200) {

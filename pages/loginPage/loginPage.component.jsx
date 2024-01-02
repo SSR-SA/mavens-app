@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Linking, StatusBar} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {userLogin} from '../../requests/user';
 
 import {
 	Container,
@@ -23,10 +22,12 @@ import {
 	SignUpButton,
 	SignUpButtonText,
 } from './loginPage.styles';
+import {useAuth} from '../../context/authContext';
 
 const LoginPage = ({navigation}) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const {login} = useAuth();
 
 	const handleLogin = async () => {
 		try {
@@ -34,9 +35,7 @@ const LoginPage = ({navigation}) => {
 				alert('Please fill all fields');
 				return;
 			}
-
-			const response = await userLogin({email: email, password: password});
-
+			const response = await login({email: email, password: password});
 			if (response) {
 				navigation.navigate('Home');
 			} else {

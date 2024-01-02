@@ -1,4 +1,3 @@
-// AuthContext.js
 import {createContext, useContext, useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {userLogin} from '../requests/user';
@@ -7,6 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
 	const [user, setUser] = useState(null);
+	const [token, setToken] = useState(null);
 
 	useEffect(() => {
 		const checkUser = async () => {
@@ -26,9 +26,11 @@ export const AuthProvider = ({children}) => {
 	const login = async (userData) => {
 		try {
 			const response = await userLogin(userData);
-			await AsyncStorage.setItem('user', response);
+			await AsyncStorage.setItem('user', JSON.stringify(response));
 
-			setUser(userData);
+			setUser(JSON.stringify(response));
+			setToken(response.token);
+			return response;
 		} catch (error) {
 			console.error('Login error:', error.message);
 			throw error;
@@ -37,7 +39,6 @@ export const AuthProvider = ({children}) => {
 
 	const logout = async () => {
 		try {
-			// Remove user data from AsyncStorage
 			await AsyncStorage.removeItem('user');
 
 			setUser(null);
@@ -48,7 +49,7 @@ export const AuthProvider = ({children}) => {
 	};
 
 	return (
-		<AuthContext.Provider value={{user, login, logout}}>
+		<AuthContext.Provider value={{user, login, token, logout}}>
 			{children}
 		</AuthContext.Provider>
 	);

@@ -8,7 +8,7 @@ import {
 	ContinueLearningCardContainer,
 } from './continueLearningSection.styles';
 
-const ContinueLearningSection = (props) => {
+const ContinueLearningSection = ({cardsData}) => {
 	return (
 		<ContinueLearningSectionContainer>
 			<Header>
@@ -16,12 +16,12 @@ const ContinueLearningSection = (props) => {
 				<SeeAll>See All</SeeAll>
 			</Header>
 			<ContinueLearningCardContainer>
-				{ContinueLearningCardContainerData.map((item) => (
+				{cardsData.map((item) => (
 					<ContinueLearningnCard
-						key={item.id}
-						image={item.image}
-						course={item.course}
-						creator={item.creator}
+						key={item._id}
+						image={item.imageUrl}
+						course={item.title}
+						creator={item.price}
 					/>
 				))}
 			</ContinueLearningCardContainer>
