@@ -6,9 +6,10 @@ import {StatusBar} from 'react-native';
 import LoginPage from './pages/loginPage/loginPage.component';
 import HomePage from './pages/homePage';
 import SignupPage from './pages/signupPage/signupPage.component';
-import ForgetPassword from './pages/forgotPassword';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {AuthProvider} from './context/authContext';
+import ForgotPasswordPage from './pages/forgotpassword/forgotpassword.component';
+import ResetPasswordPage from './pages/resetpassword/resetpasswordPage.component';
 
 const Stack = createStackNavigator();
 
@@ -27,7 +28,11 @@ const App = () => {
 						<Stack.Screen name="Login" component={LoginPage} />
 						<Stack.Screen name="SignUp" component={SignupPage} />
 						<Stack.Screen name="Home" component={HomePage} />
-						<Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+						<Stack.Screen
+							name="ForgetPassword"
+							component={ForgotPasswordPage}
+						/>
+						<Stack.Screen name="ResetPassword" component={ResetPasswordPage} />
 					</Stack.Navigator>
 				</NavigationContainer>
 			</AuthProvider>

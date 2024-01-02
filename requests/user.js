@@ -28,5 +28,30 @@ export const userSignUp = async (payload) => {
 		throw error;
 	}
 };
-export const getUsers = async () => {};
-export const getTeachers = async () => {};
+export const forgotpassword = async (payload) => {
+	try {
+		const response = await axios.post(`/api/user/forgot-password`, payload);
+
+		if (response.status === 200) {
+			return response.data;
+		} else {
+			throw new Error(`Unexpected response status: ${response.status}`);
+		}
+	} catch (error) {
+		throw error;
+	}
+};
+
+export const resetpassword = async (payload) => {
+	try {
+		const response = await axios.post(`/api/user/reset-password`, payload);
+
+		if (response.status === 200) {
+			return response.data;
+		} else {
+			throw new Error(`Unexpected response status: ${response.status}`);
+		}
+	} catch (error) {
+		throw error;
+	}
+};
