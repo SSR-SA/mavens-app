@@ -63,8 +63,8 @@ const ResetPasswordPage = ({navigation}) => {
 						<Input
 							placeholder="new password"
 							autoCapitalize="none"
-							value={password}
-							onChangeText={(text) => setPassword(text)}
+							value={newPassword}
+							onChangeText={(text) => setNewPassword(text)}
 							placeholderTextColor="#808080"
 						/>
 						<Input
