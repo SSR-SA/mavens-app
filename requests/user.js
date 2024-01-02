@@ -19,7 +19,9 @@ export const userSignUp = async (payload) => {
 	try {
 		const response = await axios.post('/api/user/register', payload);
 
-		if (response.status === 200) {
+		console.log('******* ', response.status);
+		if (response.status == 201) {
+			console.log('******* ', response);
 			return response.data;
 		} else {
 			throw new Error(`Unexpected response status: ${response.status}`);
@@ -32,7 +34,7 @@ export const forgotpassword = async (payload) => {
 	try {
 		const response = await axios.post(`/api/user/forgot-password`, payload);
 
-		if (response.status === 200) {
+		if (response.status == 200) {
 			return response.data;
 		} else {
 			throw new Error(`Unexpected response status: ${response.status}`);
