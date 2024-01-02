@@ -10,6 +10,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {AuthProvider} from './context/authContext';
 import ForgotPasswordPage from './pages/forgotpassword/forgotpassword.component';
 import ResetPasswordPage from './pages/resetpassword/resetpasswordPage.component';
+import ProfileMenuPage from './pages/profileMenuPage/profileMenuPage.component';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ const App = () => {
 							component={ForgotPasswordPage}
 						/>
 						<Stack.Screen name="ResetPassword" component={ResetPasswordPage} />
+						<Stack.Screen name="ProfileMenu" component={ProfileMenuPage} />
 					</Stack.Navigator>
 				</NavigationContainer>
 			</AuthProvider>

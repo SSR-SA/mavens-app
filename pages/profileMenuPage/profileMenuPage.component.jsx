@@ -11,11 +11,11 @@ import {
 	ProfileSectionContainer,
 	ProfileTop,
 	SectionText,
-} from './profilePage.styles';
+} from './profileMenuPage.styles';
 
 const backgroundColor = '#111313';
 
-const UserProfilePage = ({navigation}) => {
+const ProfileMenuPage = ({navigation}) => {
 	const user = {
 		firstName: 'John',
 		lastName: 'Doe',
@@ -63,4 +63,4 @@ const UserProfilePage = ({navigation}) => {
 	);
 };
 
-export default UserProfilePage;
+export default ProfileMenuPage;
