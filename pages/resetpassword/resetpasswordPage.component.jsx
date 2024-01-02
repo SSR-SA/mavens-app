@@ -25,12 +25,15 @@ import {
 } from './resetpasswordPage.styles';
 
 const ResetPasswordPage = ({navigation}) => {
-	const [password, setPassword] = useState('');
+	const [newPassword, setNewPassword] = useState('');
 	const [passwordConfirm, setPasswordConfirm] = useState('');
 	const [otp, setOtp] = useState('');
 
 	const handleResetPassword = async () => {
-		const response = await resetpassword({otp, password, confirmPassword});
+		if (newPassword != passwordConfirm) {
+			alert(`Passwords don't match`);
+		}
+		const response = await resetpassword({otp, newPassword});
 		if (response) {
 			alert('Passowrd changed successfully');
 			navigation.navigate('Login');
