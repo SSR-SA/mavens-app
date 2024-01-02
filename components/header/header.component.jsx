@@ -14,7 +14,7 @@ const Header = ({firstName, lastName}) => {
 		<TitleBar>
 			<TitleBarLeft>
 				<BackgroundContainer>
-					<Avatar source={require('../../assets/faces/avicii.jpeg')} />
+					<Avatar source={require('../../assets/default-user.jpg')} />
 				</BackgroundContainer>
 				<TitleContainer>
 					<Title>Welcome back,</Title>
