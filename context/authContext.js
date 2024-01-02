@@ -28,7 +28,7 @@ export const AuthProvider = ({children}) => {
 			const response = await userLogin(userData);
 			await AsyncStorage.setItem('user', JSON.stringify(response));
 
-			setUser(JSON.stringify(response));
+			setUser(response);
 			setToken(response.token);
 			return response;
 		} catch (error) {

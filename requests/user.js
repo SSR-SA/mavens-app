@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://192.168.1.56:8000';
+axios.defaults.baseURL = process.env.BASE_URL;
 
 export const userLogin = async (payload) => {
 	try {
-		console.log(payload);
 		const response = await axios.post(`/api/user/login`, payload);
 
 		if (response.status === 200) {

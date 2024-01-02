@@ -84,7 +84,6 @@ const ForgetPassword = ({navigation}) => {
 
 	const handleSend = async () => {
 		const response = await userLogin('');
-		console.log(response);
 	};
 
 	return (

@@ -2,10 +2,9 @@ import axios from 'axios';
 
 axios.defaults.baseURL = process.env.BASE_URL;
 
-export const GetCourses = async (token, payload) => {
+export const GetCategories = async (token) => {
 	try {
-		const response = await axios.get(`/api/course`, {
-			...payload,
+		const response = await axios.get(`/api/category`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},

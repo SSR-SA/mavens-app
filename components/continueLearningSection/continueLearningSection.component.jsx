@@ -21,7 +21,7 @@ const ContinueLearningSection = ({cardsData}) => {
 						key={item._id}
 						image={item.imageUrl}
 						course={item.title}
-						creator={item.price}
+						creator={`${item.createdBy.firstName} ${item.createdBy.lastName}`}
 					/>
 				))}
 			</ContinueLearningCardContainer>
